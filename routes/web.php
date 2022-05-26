@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,11 @@ Route::get('/', function () {
     return view('public.home');
 });
 
-Route::get('/bestellen', function () {
-    return view('order.main');
-});
+Route::get('/bestellen', [ProductController::class, 'getIndex']);
 
+Route::get('/add-to-cart/{id}', [
+    ProductController::class, 'addToCart'
+])->name('product.addToCart');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
