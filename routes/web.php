@@ -18,11 +18,15 @@ Route::get('/', function () {
     return view('public.home');
 });
 
-Route::get('/bestellen', [ProductController::class, 'getIndex']);
+Route::get('/bestellen', [ProductController::class, 'getIndex'])->name('order.main');
 
 Route::get('/add-to-cart/{id}', [
     ProductController::class, 'addToCart'
 ])->name('product.addToCart');
+
+Route::get('/winkelmandje', [
+    ProductController::class, 'getCart'
+])->name('shoppingCart');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
