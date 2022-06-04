@@ -23,7 +23,7 @@
             </div>
             <div>
                 <a href="{{ route('shoppingCart') }}">Winkelmandje</a><span
-                    class="mr-2 rounded bg-pink-100 px-2.5 py-0.5 text-sm font-medium text-pink-800 dark:bg-pink-200 dark:text-pink-900">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                    class="mr-2 rounded bg-pink-100 px-2.5 py-0.5 text-sm font-medium text-pink-800 dark:bg-pink-200 dark:text-pink-900">{{ Session::has('cart') ? Session::get('cart')->getTotalQty() : '' }}</span>
             </div>
         </nav>
     </div>

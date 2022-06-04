@@ -2,32 +2,89 @@
 
 namespace App;
 
+use Illuminate\Http\Request;
+
 class Cart
 {
-    public $items;
-    public $totalQty = 0;
-    public $totalPrice = 0;
+    private $items = [];
+    private $totalQty = 0;
+    private $totalPrice = 0;
 
-    public function __construct($oldCart)
+    // Singleton
+    private static $instance = null;
+    public static function getInstance(Request $request)
     {
-        // dd($oldCart);
-        $this->items = $oldCart->items;
-        $this->totalQty = $oldCart->totalQty;
-        $this->totalPrice = $oldCart->totalPrice;
+        if (static::$instance != null) return static::$instance;
+
+        static::$instance =
+            $request->session()->has('cart') ?
+            $request->session()->get('cart') :
+            new static();
+
+        return static::$instance;
     }
 
-    public function add($item, $id)
+    // Prevent the class from being constructed externally
+    private function __construct()
     {
-        $storedItem = ['qty' => 0, 'price' => $item->price, 'item' => $item];
-        if ($this->items) {
-            if (array_key_exists($id, $this->items)) {
-                $storedItem = $this->items[$id];
-            }
+    }
+
+    public function getItems()
+    {
+        return $this->items;
+    }
+    public function getTotalQty()
+    {
+        return $this->totalQty;
+    }
+    public function getTotalPrice()
+    {
+        return $this->totalPrice;
+    }
+
+    public function addProduct(Request $request, $product, $product_id)
+    {
+        if (array_key_exists($product_id, $this->items)) {
+            $storedItem = $this->items[$product_id];
+            $storedItem['qty']++;
+            $storedItem['subTotal'] = $product->price * $storedItem['qty'];
+        } else {
+            $storedItem = ['qty' => 1, 'subTotal' => $product->price, 'product' => $product];
         }
-        $storedItem['qty']++;
-        $storedItem['price'] = $item->price * $storedItem['qty'];
-        $this->items[$id] = $storedItem;
+
+        $this->items[$product_id] = $storedItem;
         $this->totalQty++;
-        $this->totalPrice += $item->price;
+        $this->totalPrice += $product->price;
+
+        $request->session()->put('cart', $this);
+    }
+
+    public function removeProduct(Request $request, $product_id)
+    {
+        if (array_key_exists($product_id, $this->items)) {
+            $storedItem = $this->items[$product_id];
+            if ($storedItem['qty'] == 1) {
+                unset($this->items[$product_id]);
+            } else {
+                $storedItem['qty']--;
+                $storedItem['subTotal'] = $storedItem['product']->price * $storedItem['qty'];
+            }
+        } else {
+            // TODO: Not possible
+        }
+
+        $this->items[$product_id] = $storedItem;
+        $this->totalQty--;
+        $this->totalPrice -= $storedItem['product']->price;
+
+        $request->session()->put('cart', $this);
+    }
+
+    public function reset(Request $request)
+    {
+        $this->items = [];
+        $this->totalQty = 0;
+        $this->totalPrice = 0;
+        $request->session()->put('cart', $this);
     }
 }
