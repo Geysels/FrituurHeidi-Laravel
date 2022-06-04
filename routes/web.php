@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,14 +20,29 @@ Route::get('/', function () {
     return view('public.home');
 });
 
-Route::get('/bestellen', [ProductController::class, 'getIndex'])->name('order.main');
+Route::get('/bestellen', [
+    ProductController::class,
+    'index'
+])->name('order.main');
 
 Route::get('/add-to-cart/{id}', [
-    ProductController::class, 'addToCart'
-])->name('product.addToCart');
+    CartController::class,
+    'addProductToCart'
+])->name('addToCart');
+
+Route::get('/delete-from-cart/{id}', [
+    CartController::class,
+    'removeProductFromCart'
+])->name('removeFromCart');
+
+Route::get('/empty-cart', [
+    CartController::class,
+    'emptyCart'
+])->name('emptyCart');
 
 Route::get('/winkelmandje', [
-    ProductController::class, 'getCart'
+    CartController::class,
+    'getCart'
 ])->name('shoppingCart');
 
 Route::group(['prefix' => 'admin'], function () {
