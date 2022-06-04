@@ -1,4 +1,4 @@
 @extends('order.layouts.default')
 @section('content')
-    @include('menu-content')
+    @include('order.pages.contents.menu-content')
 @stop
