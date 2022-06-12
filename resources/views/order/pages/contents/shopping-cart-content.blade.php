@@ -34,7 +34,7 @@
             <p class="text-lg font-medium">€ {{ $totalPrice }}</p>
         </div>
         <div class="flex justify-center">
-            <a href="{{ route('shoppingCart') }}"><button type="button"
+            <a href="{{ route('checkout') }}"><button type="button"
                     class="btn btn-primary transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">Checkout</button></a>
         </div>
 

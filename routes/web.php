@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 
@@ -41,10 +42,10 @@ Route::get('/empty-cart', [
     'emptyCart'
 ])->name('emptyCart');
 
-Route::get('/winkelmandje', [
-    CartController::class,
-    'getCart'
-])->name('shoppingCart');
+Route::get('/checkout', [
+    CheckoutController::class,
+    'displayCart'
+])->name('checkout');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
