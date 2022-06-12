@@ -5,7 +5,7 @@
     @include('includes.head')
 </head>
 
-<body class="scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100 bg-amber-500">
+<body>
     @include('includes.nav')
     <main>
         @yield('content')

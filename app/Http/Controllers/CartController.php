@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Cart;
+use App\Category;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -27,8 +28,14 @@ class CartController extends Controller
     public function getCart(Request $request)
     {
         $cart = Cart::getInstance($request);
+        $categories = Category::all();
 
-        return view('order.pages.shopping-cart', ['storedItems' => $cart->getItems(), 'totalPrice' => $cart->getTotalPrice()]);
+
+        return view('order.pages.shopping-cart', [
+            'storedItems' => $cart->getItems(),
+            'totalPrice' => $cart->getTotalPrice(),
+            'categories' => $categories,
+        ]);
     }
 
     public function emptyCart(Request $request)
