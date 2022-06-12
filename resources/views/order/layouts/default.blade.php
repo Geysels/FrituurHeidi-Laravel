@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="cupcake">
 
 <head>
     @include('includes.head')
 </head>
 
-<body class="scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-100 flex min-h-screen bg-gray-100">
-
-    @include('includes.sidebar')
-    <div class="flex-1">
-        <main>
+<body>
+    <div class="drawer drawer-mobile">
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col">
             @yield('content')
-        </main>
-        @include('includes.footer')
+        </div>
+        @include('includes.sidebar')
     </div>
+    @include('includes.footer')
 </body>
 
 </html>
