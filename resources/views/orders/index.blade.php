@@ -6,7 +6,7 @@
         @include('voyager::dimmers')
         <div class="analytics-container">
             <!-- TODO page -->
-            <h1>Placeholder custom page</h1>
+            <p>{{$order}}</p>
         </div>
     </div>
 @stop
