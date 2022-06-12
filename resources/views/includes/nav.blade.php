@@ -7,7 +7,7 @@
                     Heidi</span>
             </a>
             <div class="flex md:order-2">
-                <button type="button"
+                <button type="button" onclick="window.location.href = '/admin/login'"
                     class="mr-3 rounded-lg border-2 border-solid border-white px-2 py-2 text-center text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-5 md:px-5">Aanmelden</button>
                 <button type="button"
                     class="mr-3 rounded-lg bg-red-700 px-2 py-2 text-center text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-0 md:px-5">Bestellen</button>

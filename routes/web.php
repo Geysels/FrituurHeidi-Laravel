@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,5 @@ Route::get('/winkelmandje', [
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
 });
