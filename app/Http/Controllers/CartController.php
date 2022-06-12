@@ -22,14 +22,13 @@ class CartController extends Controller
     {
         Cart::getInstance($request)->removeProduct($request, $product_id);
 
-        return redirect()->route('shoppingCart');
+        return redirect()->route('order.main');
     }
 
     public function getCart(Request $request)
     {
         $cart = Cart::getInstance($request);
         $categories = Category::all();
-
 
         return view('order.pages.shopping-cart', [
             'storedItems' => $cart->getItems(),
@@ -42,6 +41,6 @@ class CartController extends Controller
     {
         Cart::getInstance($request)->reset($request);
 
-        return redirect()->route('shoppingCart');
+        return redirect()->route('order.main');
     }
 }
