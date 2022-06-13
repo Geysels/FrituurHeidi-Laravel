@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cart;
 use App\Category;
+use App\Order;
 
 class CheckoutController extends Controller
 {
@@ -18,5 +19,16 @@ class CheckoutController extends Controller
             'totalPrice' => $cart->getTotalPrice(),
             'categories' => $categories,
         ]);
+    }
+
+    public function submitOrder()
+    {
+        $order = new Order;
+
+        $order->name = request('name');
+        $order->email = request('email');
+        $order->telephone = request('telephone');
+        dd($order);
+        // $order->save();
     }
 }
