@@ -47,6 +47,11 @@ Route::get('/checkout', [
     'displayCart'
 ])->name('checkout');
 
+Route::post(
+    '/checkout/submit',
+    [CheckoutController::class, 'submitOrder']
+);
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
