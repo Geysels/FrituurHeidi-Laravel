@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DashboardController;
 
 use Illuminate\Http\Request;
 /*
@@ -54,5 +55,6 @@ Route::post(
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
 });
