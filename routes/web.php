@@ -53,6 +53,10 @@ Route::post(
     [CheckoutController::class, 'submitOrder']
 );
 
+Route::get('/register', 'RegistrationController@create');
+Route::post('register', 'RegistrationController@store');
+
+
 Route::get('/login', function () {
     return view('login');
 })->name('login');
