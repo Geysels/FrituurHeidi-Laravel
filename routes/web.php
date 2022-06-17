@@ -56,7 +56,7 @@ Route::post(
 Route::get('/login', function () {
     return view('login');
 })->name('login');
-Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Voyager::routes();
     Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
