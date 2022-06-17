@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
 
 class RegistrationController extends Controller
 {
@@ -17,6 +17,7 @@ class RegistrationController extends Controller
         $this->validate(request(), [
             'name' => 'required',
             'email' => 'required|email',
+            'telephone' => 'required',
             'password' => 'required'
         ]);
         
