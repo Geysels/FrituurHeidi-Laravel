@@ -1,7 +1,7 @@
 @extends('public.layouts.default')
 @section('content')
     <section>
-<div class="mt-5">
+<div class="mt-20 py-5">
     <h2>Register</h2>
     <form method="POST" action="/register">
         {{ csrf_field() }}

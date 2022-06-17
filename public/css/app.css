@@ -2902,6 +2902,9 @@ body[dir="rtl"] .checkbox:checked,
 .mt-8 {
   margin-top: 2rem;
 }
+.mt-20 {
+  margin-top: 5rem;
+}
 .block {
   display: block;
 }
@@ -3141,13 +3144,10 @@ body[dir="rtl"] .checkbox:checked,
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
-<<<<<<< HEAD
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
-=======
->>>>>>> 30e4b9e47d5275386e623905fd36759c89329f02
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
