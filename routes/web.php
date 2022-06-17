@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RegistrationController;
 
 use Illuminate\Http\Request;
 /*
@@ -53,8 +54,8 @@ Route::post(
     [CheckoutController::class, 'submitOrder']
 );
 
-Route::get('/register', 'RegistrationController@create');
-Route::post('register', 'RegistrationController@store');
+Route::get('/register', [RegistrationController::class, 'create']);
+Route::post('register', [RegistrationController::class, 'store']);
 
 
 Route::get('/login', function () {

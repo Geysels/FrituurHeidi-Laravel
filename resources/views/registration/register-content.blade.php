@@ -1,7 +1,7 @@
-@extends('layouts.master')
-
+@extends('public.layouts.default')
 @section('content')
-
+    <section>
+<div class="mt-5">
     <h2>Register</h2>
     <form method="POST" action="/register">
         {{ csrf_field() }}
@@ -23,8 +23,10 @@
         <div class="form-group">
             <button style="cursor:pointer" type="submit" class="btn btn-primary">Submit</button>
         </div>
-        @include('partials.formerrors')
+        
     </form>
+    </div>
+    </section>
 
 @endsection 
  
