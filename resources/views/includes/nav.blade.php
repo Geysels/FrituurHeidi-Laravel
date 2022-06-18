@@ -9,6 +9,9 @@
             <div class="flex md:order-2">
                 <button type="button" onclick="window.location.href = '/admin/login'"
                     class="mr-3 rounded-lg border-2 border-solid border-white px-2 py-2 text-center text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-5 md:px-5">Aanmelden</button>
+                <button type="button" onclick="window.location.href = '/register'"
+                    class="mr-3 rounded-lg border-2 border-solid border-white px-2 py-2 text-center text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-5 md:px-5">Registreren
+                        </button>
                 <button type="button"
                     class="mr-3 rounded-lg bg-red-700 px-2 py-2 text-center text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-0 md:px-5">Bestellen</button>
                 <button data-collapse-toggle="mobile-menu-4" type="button"
@@ -28,6 +31,8 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </button>
+                
+
             </div>
             <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="mobile-menu-4">
                 <ul class="mt-4 flex flex-col md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-medium">
@@ -50,6 +55,7 @@
                         <a href="#"
                             class="block border-b border-gray-100 py-2 pr-4 pl-3 text-stone-800 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-stone-700 md:dark:hover:bg-transparent md:dark:hover:text-white">Contact</a>
                     </li>
+                    
                 </ul>
             </div>
         </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RegistrationController;
 
 use Illuminate\Http\Request;
 /*
@@ -52,13 +53,16 @@ Route::post(
     '/checkout/submit',
     [CheckoutController::class, 'submitOrder']
 );
-/*
+
+Route::get('/register', [RegistrationController::class, 'create']);
+Route::post('register', [RegistrationController::class, 'store']);
+
+
 Route::get('/login', function () {
     return view('login');
 })->name('login');
-*/
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Voyager::routes();
     Route::group(['middleware' => 'authVoyager:management'], function(){
         Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
