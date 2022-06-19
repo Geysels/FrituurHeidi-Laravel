@@ -57,16 +57,14 @@ Route::post(
 Route::get('/register', [RegistrationController::class, 'create']);
 Route::post('register', [RegistrationController::class, 'store']);
 
-
 Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
+
+Route::group(['prefix' => 'admin','middleware' => 'authVoyager:management'], function () {
     Voyager::routes();
-    Route::group(['middleware' => 'authVoyager:management'], function(){
-        Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
-    });
-    
+    Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
 });

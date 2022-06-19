@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\OrderProduct;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -20,5 +21,12 @@ class DashboardController extends Controller
         }
         //dd('Monthly revenue: €'.$totalM,'Weekly revenue: €'.$totalW);
         return view('public.pages.dashboard',['m'=>$totalM,'w'=>$totalW]);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('voyager.login');
     }
 }
