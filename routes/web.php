@@ -22,7 +22,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('public.home');
-});
+})->name('home');
 
 Route::get('/bestellen', [
     ProductController::class,
@@ -63,8 +63,12 @@ Route::get('/login', function () {
 
 Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
 
-Route::group(['prefix' => 'admin','middleware' => 'authVoyager:management'], function () {
+Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-    Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
-    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
+    Route::group(['middleware' => 'authVoyager:management'], function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
+        Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
+    });
+
+    
 });
