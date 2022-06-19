@@ -1,13 +1,17 @@
 @extends('voyager::master')
-
+<?php
+header("Refresh: 30; URL=".$_SERVER['REQUEST_URI']);
+?>
 @section('content')
     <div class="page-content">
         @include('voyager::alerts')
         @include('voyager::dimmers')
         <div class="analytics-container">
-            <!-- TODO DASHBOARD -->
-            <h1>Maandelijkse omzet: €{{$m}}</h1>
-            <h1>Wekelijkse omzet: €{{$w}}</h1>
+            @forEach($orders as $order)
+                <div class="alert alert-danger" role="alert">
+                    <h3>Nieuwe bestelling van {{$order->user->name}} om af te halen om {{date('H:i',strtotime($order->pickuptime))}}! klik <a href="/admin/orders/{{$order->id}}">hier</a> om de bestelling te bekijken.</h3>
+                </div>
+            @endforeach
         </div>
     </div>
 @stop

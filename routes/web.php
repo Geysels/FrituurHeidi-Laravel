@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'authVoyager:management'], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
         Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
+        Route::get('/orders/{id}/complete', [OrderController::class, 'complete'])->name('voyager.orders.complete');
     });
 
     
