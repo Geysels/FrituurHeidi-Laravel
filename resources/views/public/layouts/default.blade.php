@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="luxury">
 
 <head>
     @include('includes.head')
 </head>
 
-<body>
+<body class="bg-stone-800">
     @include('includes.nav')
     <main>
         @yield('content')

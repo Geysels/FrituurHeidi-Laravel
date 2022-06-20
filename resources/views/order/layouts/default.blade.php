@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="bumblebee">
+<html lang="en" data-theme="luxury">
 
 <head>
     @include('includes.head')
