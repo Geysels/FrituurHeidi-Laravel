@@ -1,12 +1,73 @@
 @extends('voyager::master')
 
 @section('content')
-    <div class="page-content">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+<div class="page-content">
         @include('voyager::alerts')
         @include('voyager::dimmers')
         <div class="analytics-container">
-            <!-- TODO page -->
-            <p>{{$order}}</p>
+            <table  class="table table-bordered table-striped text-center">
+                <thead>
+                    <tr><td class="h2">Klant: </td><td class="h2">{{$order->user->name}} <sup>({{$order->user->telephone}})</sup></td></tr>
+                    <tr><td class="h2">Afhalen om:</td><td class="h2">{{date('H:i',strtotime($order->pickuptime))}}</td></tr>
+                    <tr>
+                        @if($order->status=="created")
+                            <td class="h2" colspan="2">Status <h4 class='text-danger'>Nieuw</h4></td>
+                        @elseif($order->status=="completed")
+                            <td class="h2" colspan="2">Status <h4 class='text-success'>Afgerond</h4></td>
+                        @else
+                            <td class="h2" colspan="2">Status <h4 class='text-warning'>Onbekend</h4></td>
+                        @endif 
+                    </tr>              
+                </thead>
+            </table>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Naam</th>
+                    <th scope="col">Prijs</th>
+                    <th scope="col">Aantal</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">Opmerking</th>
+                    <th scope="col">Totaal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @forEach($order->products as $product)
+                    <tr class="text-dark font-weight-bold">
+                        <th>{{$product->name}}</td>
+                        <th scope="row">€ {{number_format($product->price, 2, ',', ' ')}}</th>
+                        <th>{{$product->amount}}</td>
+                        <th>{{$product->category}}</td>
+                        <th>{{$product->remark}}</td>
+                        <th>€ {{number_format($product->price*$product->amount, 2, ',', ' ')}}</td>
+                    </tr>
+                    @foreach($product->options as $option)
+                    <tr>
+                        <td offset="1">{{$option->name}} <i class="fa-solid fa-turn-up text-muted"></i></td>
+                        <td>{{$option->price}}</td>
+                        <td colspan=3></td>
+                        <td>€ {{number_format($option->price, 2, ',', ' ')}}</td>
+                    </tr>
+                    @endforeach
+                  @endforeach
+                  <tr>
+                    <th class="text-right" scope="row" colspan="5">Te betalen:</th>
+                    <th>€ {{number_format($totaal, 2, ',', ' ')}}</th>
+                </tr>
+                </tbody>
+              </table>
+              @if($order->status != "completed")
+                <form action="/admin/orders/{{$order->id}}/complete">
+                    @csrf
+                    <button class="btn btn-danger btn-lg">Bestelling afronden</button>
+                </form>
+              @endif
         </div>
     </div>
 @stop

@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RegistrationController;
 
 use Illuminate\Http\Request;
 /*
@@ -21,7 +22,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('public.home');
-});
+})->name('home');
 
 Route::get('/bestellen', [
     ProductController::class,
@@ -53,15 +54,20 @@ Route::post(
     [CheckoutController::class, 'submitOrder']
 );
 
-Route::get('/register', 'RegistrationController@create');
-Route::post('register', 'RegistrationController@store');
-
+Route::get('/register', [RegistrationController::class, 'create']);
+Route::post('register', [RegistrationController::class, 'store']);
 
 Route::get('/login', function () {
     return view('login');
 })->name('login');
+
+Route::get('/logout', [DashboardController::class, 'logout'])->name('logout');
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-    Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
-    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
+    Route::group(['middleware' => 'authVoyager:management'], function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('voyager.dashboard');
+        Route::get('/orders/{id}', [OrderController::class, 'show'])->name('voyager.orders.show');
+        Route::get('/orders/{id}/complete', [OrderController::class, 'complete'])->name('voyager.orders.complete');
+    });
 });
