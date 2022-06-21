@@ -1,0 +1,16 @@
+h1 {
+    font-family: 'Herr Von Muellerhoff', cursive;
+    margin: 0 0 -35px;
+}
+
+h2, h3 {
+    font-family: "Source Code Pro", sans-serif;
+    letter-spacing: 9.4px;
+}
+
+a {
+    font-family: "Source Code Pro", sans-serif;
+    letter-spacing: 2px;
+
+}
+

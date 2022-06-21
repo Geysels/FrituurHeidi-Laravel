@@ -22,14 +22,14 @@
                                 <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                             </svg>
                         </a>
-                        <ul class="p-2">
+                        <ul class="bg-stone-800 p-2">
                             <li><a href="{{ route('login') }}">Aanmelden</a></li>
                             <li><a href="{{ route('register') }}">Registreren</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <a class="btn btn-ghost text-xl normal-case">Frituur Heidi</a>
+            <a class="btn btn-ghost upper-case hidden text-xl md:flex">Frituur Heidi</a>
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
@@ -44,7 +44,7 @@
                             <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                         </svg>
                     </a>
-                    <ul class="p-2">
+                    <ul class="bg-stone-800 p-2">
                         <li><a href="{{ route('login') }}">Aanmelden</a></li>
                         <li><a href="{{ route('register') }}">Registreren</a></li>
                     </ul>
@@ -52,7 +52,7 @@
             </ul>
         </div>
         <div class="navbar-end">
-            <a class="btn" href="{{ route('order.main') }}">Bestel Online</a>
+            <a class="btn md:mr-5" href="{{ route('order.main') }}">Bestel Online</a>
         </div>
     </div>
 </nav>
