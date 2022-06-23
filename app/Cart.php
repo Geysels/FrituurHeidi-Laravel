@@ -69,6 +69,7 @@ class Cart
             } else {
                 $storedItem['qty']--;
                 $storedItem['subTotal'] = $storedItem['product']->price * $storedItem['qty'];
+                $this->items[$product_id] = $storedItem;
             }
             $request->session()->put('cart', $this);
         }

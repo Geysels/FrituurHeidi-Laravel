@@ -39,16 +39,16 @@
                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
                 placeholder="Datum">
         </div>
-        <select class="select select-bordered mb-4 w-full max-w-xs">
-            <option selected>17:00</option>
-            <option>17:30</option>
-            <option>17:00</option>
-            <option>18:00</option>
-            <option>18:30</option>
-            <option>19:00</option>
-            <option>19:30</option>
-            <option>20:00</option>
-            <option>20:30</option>
+        <select name="pickuptime" class="select select-bordered mb-4 w-full max-w-xs">
+            <option value="17:00" selected>17:00</option>
+            <option value="17:30">17:30</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="18:30">18:30</option>
+            <option value="19:00">19:00</option>
+            <option value="19:30">19:30</option>
+            <option value="20:00">20:00</option>
+            <option value="20:30">20:30</option>
         </select>
         <div class="flex justify-center">
             <button type="submit" class="btn btn-wide btn-secondary mt-5">Bestelling plaatsen</button>
