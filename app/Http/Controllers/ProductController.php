@@ -11,14 +11,13 @@ use App\OptionProduct;
 
 class ProductController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $category_id = -1)
     {
         $categories = Category::where('visible', '=', '1')->get();
-
-        foreach ($categories as $category) {
-            $products = Product::where('category_id', '=', $category->id)->get();
+        $products = [];
+        if ($category_id != -1) {
+            $products = Product::where('category_id', '=', $category_id)->get();
             foreach ($products as $product) {
-                $prod = Product::find($product->id);
                 $productOptions = OptionProduct::where('product_id', '=', $product->id)->get();
                 foreach ($productOptions as $option) {
                     $opt = Option::find($option->option_id);
@@ -26,22 +25,14 @@ class ProductController extends Controller
                     $option->price = $opt->price;
                 }
                 $product->options = $productOptions;
-                $product->id = $prod->id;
-                $product->name = $prod->name;
-                $product->visible = $prod->visible;
-                $product->price = $prod->price;
-                $product->remark = $prod->remark;
             }
-            $category->products = $products;
         }
-
         $cart = Cart::getInstance($request);
-
         return view('order.main', [
             'storedItems' => $cart->getItems(),
             'totalPrice' => $cart->getTotalPrice(),
-            'products' => $products,
             'categories' => $categories,
+            'products' => $products,
         ]);
     }
 }

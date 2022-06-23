@@ -29,6 +29,11 @@ Route::get('/bestellen', [
     'index'
 ])->name('order.main');
 
+Route::get('/bestellen/{id}', [
+    ProductController::class,
+    'index'
+])->name('getProductsFromCategory');
+
 Route::get('/add-to-cart/{id}', [
     CartController::class,
     'addProductToCart'

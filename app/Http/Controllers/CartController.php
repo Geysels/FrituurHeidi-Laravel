@@ -15,27 +15,27 @@ class CartController extends Controller
 
         Cart::getInstance($request)->addProduct($request, $product, $product->id);
 
-        return redirect()->route('order.main');
+        return back();
     }
 
     public function removeProductFromCart(Request $request, $product_id)
     {
         Cart::getInstance($request)->removeProduct($request, $product_id);
 
-        return redirect()->route('order.main');
+        return back();
     }
 
-    public function getCart(Request $request)
-    {
-        $cart = Cart::getInstance($request);
-        $categories = Category::all();
+    // public function getCart(Request $request)
+    // {
+    //     $cart = Cart::getInstance($request);
+    //     $categories = Category::all();
 
-        return view('order.pages.shopping-cart', [
-            'storedItems' => $cart->getItems(),
-            'totalPrice' => $cart->getTotalPrice(),
-            'categories' => $categories,
-        ]);
-    }
+    //     return view('order.pages.shopping-cart', [
+    //         'storedItems' => $cart->getItems(),
+    //         'totalPrice' => $cart->getTotalPrice(),
+    //         'categories' => $categories,
+    //     ]);
+    // }
 
     public function emptyCart(Request $request)
     {

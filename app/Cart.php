@@ -3,12 +3,11 @@
 namespace App;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class Cart
 {
     private $items = [];
-    private $totalQty = 0;
-    private $totalPrice = 0;
 
     // Singleton
     private static $instance = null;
@@ -35,11 +34,14 @@ class Cart
     }
     public function getTotalQty()
     {
-        return $this->totalQty;
+        return count($this->items);
     }
+
     public function getTotalPrice()
     {
-        return $this->totalPrice;
+        return array_reduce($this->items, function ($accumulator, $item) {
+            return $accumulator + $item['product']->price * $item['qty'];
+        }, 0);
     }
 
     public function addProduct(Request $request, $product, $product_id)
@@ -53,8 +55,6 @@ class Cart
         }
 
         $this->items[$product_id] = $storedItem;
-        $this->totalQty++;
-        $this->totalPrice += $product->price;
 
         $request->session()->put('cart', $this);
     }
@@ -64,27 +64,18 @@ class Cart
         if (array_key_exists($product_id, $this->items)) {
             $storedItem = $this->items[$product_id];
             if ($storedItem['qty'] == 1) {
-                unset($this->items[$product_id]);
+                $this->items = Arr::except($this->items, [$product_id]);
             } else {
                 $storedItem['qty']--;
                 $storedItem['subTotal'] = $storedItem['product']->price * $storedItem['qty'];
             }
-        } else {
-            // TODO: Not possible
+            $request->session()->put('cart', $this);
         }
-
-        $this->items[$product_id] = $storedItem;
-        $this->totalQty--;
-        $this->totalPrice -= $storedItem['product']->price;
-
-        $request->session()->put('cart', $this);
     }
 
     public function reset(Request $request)
     {
         $this->items = [];
-        $this->totalQty = 0;
-        $this->totalPrice = 0;
-        $request->session()->put('cart', $this);
+        $request->session()->forget('cart');
     }
 }
