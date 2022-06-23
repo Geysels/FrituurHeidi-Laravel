@@ -10,8 +10,8 @@ class Cart
     private $items = [];
 
     // Singleton
-    private static $instance = null;
-    public static function getInstance(Request $request)
+    private static ?Cart $instance = null;
+    public static function getInstance(Request $request): Cart
     {
         if (static::$instance != null) return static::$instance;
 
@@ -20,6 +20,7 @@ class Cart
             $request->session()->get('cart') :
             new static();
 
+        $request->session()->put('cart',  static::$instance);
         return static::$instance;
     }
 
@@ -28,23 +29,23 @@ class Cart
     {
     }
 
-    public function getItems()
+    public function getItems(): array
     {
         return $this->items;
     }
-    public function getTotalQty()
+    public function getTotalQty(): int
     {
         return count($this->items);
     }
 
-    public function getTotalPrice()
+    public function getTotalPrice(): float
     {
-        return array_reduce($this->items, function ($accumulator, $item) {
+        return array_reduce($this->items, function (float $accumulator, $item) {
             return $accumulator + $item['product']->price * $item['qty'];
         }, 0);
     }
 
-    public function addProduct(Request $request, $product, $product_id)
+    public function addProduct(Request $request, $product, $product_id): void
     {
         if (array_key_exists($product_id, $this->items)) {
             $storedItem = $this->items[$product_id];
@@ -59,7 +60,7 @@ class Cart
         $request->session()->put('cart', $this);
     }
 
-    public function removeProduct(Request $request, $product_id)
+    public function removeProduct(Request $request, $product_id): void
     {
         if (array_key_exists($product_id, $this->items)) {
             $storedItem = $this->items[$product_id];
@@ -73,7 +74,7 @@ class Cart
         }
     }
 
-    public function reset(Request $request)
+    public function reset(Request $request): void
     {
         $this->items = [];
         $request->session()->forget('cart');
