@@ -27,32 +27,32 @@ Route::get('/', function () {
 Route::get('/bestellen', [
     ProductController::class,
     'index'
-])->name('order.main');
+])->middleware('auth')->name('order.main');
 
 Route::get('/bestellen/{id}', [
     ProductController::class,
     'index'
-])->name('getProductsFromCategory');
+])->middleware('auth')->name('getProductsFromCategory');
 
 Route::get('/add-to-cart/{id}', [
     CartController::class,
     'addProductToCart'
-])->name('addToCart');
+])->middleware('auth')->name('addToCart');
 
 Route::get('/delete-from-cart/{id}', [
     CartController::class,
     'removeProductFromCart'
-])->name('removeFromCart');
+])->middleware('auth')->name('removeFromCart');
 
 Route::get('/empty-cart', [
     CartController::class,
     'emptyCart'
-])->name('emptyCart');
+])->middleware('auth')->name('emptyCart');
 
 Route::get('/checkout', [
     CheckoutController::class,
     'displayCart'
-])->name('checkout');
+])->middleware('auth')->name('checkout');
 
 Route::post(
     '/checkout/submit',

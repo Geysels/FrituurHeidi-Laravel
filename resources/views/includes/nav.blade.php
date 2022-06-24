@@ -14,19 +14,24 @@
                     <li><a>Over Ons</a></li>
                     <li><a>Menu</a></li>
                     <li><a>Contact</a></li>
-                    <li tabindex="0">
-                        <a class="justify-between">
-                            Gebruiker
-                            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24">
-                                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                            </svg>
-                        </a>
-                        <ul class="bg-stone-800 p-2">
-                            <li><a href="{{ route('login') }}">Aanmelden</a></li>
-                            <li><a href="{{ route('register') }}">Registreren</a></li>
-                        </ul>
-                    </li>
+
+                    @if (Auth::check())
+                        <li><a href="{{ route('logout') }}">Logout</a></li>
+                    @else
+                        <li tabindex="0">
+                            <a class="justify-between">
+                                Gebruiker
+                                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24">
+                                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+                                </svg>
+                            </a>
+                            <ul class="bg-stone-800 p-2">
+                                <li><a href="{{ route('login') }}">Aanmelden</a></li>
+                                <li><a href="{{ route('register') }}">Registreren</a></li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </div>
             <a class="btn btn-ghost upper-case hidden text-xl md:flex">Frituur Heidi</a>
@@ -36,19 +41,23 @@
                 <li><a>Over Ons</a></li>
                 <li><a>Menu</a></li>
                 <li><a>Contact</a></li>
-                <li tabindex="0">
-                    <a>
-                        Gebruiker
-                        <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 24 24">
-                            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-                        </svg>
-                    </a>
-                    <ul class="bg-stone-800 p-2">
-                        <li><a href="{{ route('login') }}">Aanmelden</a></li>
-                        <li><a href="{{ route('register') }}">Registreren</a></li>
-                    </ul>
-                </li>
+                @if (Auth::check())
+                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                @else
+                    <li tabindex="0">
+                        <a>
+                            Gebruiker
+                            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24">
+                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                            </svg>
+                        </a>
+                        <ul class="bg-stone-800 p-2">
+                            <li><a href="{{ route('login') }}">Aanmelden</a></li>
+                            <li><a href="{{ route('register') }}">Registreren</a></li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </div>
         <div class="navbar-end">
