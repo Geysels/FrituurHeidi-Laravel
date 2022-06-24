@@ -3164,6 +3164,12 @@ body[dir="rtl"] .checkbox:checked,
 .overflow-y-auto {
   overflow-y: auto;
 }
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
 .rounded-lg {
   border-radius: 0.5rem;
 }
@@ -3353,6 +3359,12 @@ body[dir="rtl"] .checkbox:checked,
 }
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.scrollbar.overflow-x-hidden {
+  overflow-x: hidden;
+}
+.scrollbar.overflow-y-hidden {
+  overflow-y: hidden;
 }
 .scrollbar-thin {
   --scrollbar-track: initial;
