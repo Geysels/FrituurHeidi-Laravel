@@ -73,6 +73,7 @@ class Cart
     {
         // If a cart already exists, it will return it
         if (static::$instance != null) return static::$instance;
+
         // Else it will check if there is one saved in the session
         // Lastly it will create a new one if none of the above applies
         static::$instance =
