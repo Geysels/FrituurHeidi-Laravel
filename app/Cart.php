@@ -9,12 +9,16 @@ class Cart
 {
     private $items = [];
 
-    // Singleton
-    private static ?Cart $instance = null;
+    // Singleton pattern. Restricts the instantiation of a class to one "single" instance
+    private static ?Cart $instance = null; // Cart|null
+
+    // This is the only way to get the Cart
     public static function getInstance(Request $request): Cart
     {
+        // If a cart already exists, it will return it
         if (static::$instance != null) return static::$instance;
-
+        // Else it will check if there is one saved in the session
+        // Lastly it will create a new one if none of the above applies
         static::$instance =
             $request->session()->has('cart') ?
             $request->session()->get('cart') :
@@ -40,6 +44,7 @@ class Cart
 
     public function getTotalPrice(): float
     {
+        // Sum all the prices from the cart
         return array_reduce($this->items, function (float $accumulator, $item) {
             return $accumulator + $item['product']->price * $item['qty'];
         }, 0);
@@ -47,6 +52,7 @@ class Cart
 
     public function addProduct(Request $request, $product, $product_id): void
     {
+        // If the same product is in the cart, just add an extra one
         if (array_key_exists($product_id, $this->items)) {
             $storedItem = $this->items[$product_id];
             $storedItem['qty']++;
@@ -64,9 +70,10 @@ class Cart
     {
         if (array_key_exists($product_id, $this->items)) {
             $storedItem = $this->items[$product_id];
+            // If there is only 1 product is in the cart, remove it completely
             if ($storedItem['qty'] == 1) {
                 $this->items = Arr::except($this->items, [$product_id]);
-            } else {
+            } else { // If the are more than 1 of the same product in the cart, remove 1
                 $storedItem['qty']--;
                 $storedItem['subTotal'] = $storedItem['product']->price * $storedItem['qty'];
                 $this->items[$product_id] = $storedItem;
@@ -75,6 +82,7 @@ class Cart
         }
     }
 
+    // Empty the cart
     public function reset(Request $request): void
     {
         $this->items = [];

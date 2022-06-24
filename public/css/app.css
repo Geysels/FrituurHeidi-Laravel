@@ -2052,6 +2052,26 @@ html {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
+.hero {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  background-size: cover;
+  background-position: center;
+}
+.hero > * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.hero-content {
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 80rem;
+  gap: 1rem;
+  padding: 1rem;
+}
 .input {
   flex-shrink: 1;
   transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
@@ -3214,6 +3234,9 @@ body[dir="rtl"] .checkbox:checked,
 .h-6 {
   height: 1.5rem;
 }
+.h-screen {
+  height: 100vh;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -3353,6 +3376,10 @@ body[dir="rtl"] .checkbox:checked,
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
 .pl-3 {
   padding-left: 0.75rem;
 }
@@ -3395,6 +3422,14 @@ body[dir="rtl"] .checkbox:checked,
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1;
+}
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
 }
 .font-medium {
   font-weight: 500;
@@ -3575,6 +3610,10 @@ body[dir="rtl"] .checkbox:checked,
 }
 @media (min-width: 640px) {
 
+  .sm\:w-screen {
+    width: 100vw;
+  }
+
   .sm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -3592,6 +3631,10 @@ body[dir="rtl"] .checkbox:checked,
 
   .md\:w-2\/4 {
     width: 50%;
+  }
+
+  .md\:w-\[60rem\] {
+    width: 60rem;
   }
 
   .md\:flex-row {
