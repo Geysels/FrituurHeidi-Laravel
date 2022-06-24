@@ -15,7 +15,7 @@ class AuthVoyager
         } else {
             $dbrole = Role::find(auth()->user()->role_id)->name;
             if ($dbrole != $role && $dbrole != 'admin') {
-                return redirect()->route('home');
+                return redirect()->route('public.home');
                 // abort(403);
             }
         }

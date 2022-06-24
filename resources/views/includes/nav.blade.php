@@ -34,13 +34,13 @@
                     @endif
                 </ul>
             </div>
-            <a class="btn btn-ghost upper-case hidden text-xl md:flex">Frituur Heidi</a>
+            <a class="btn btn-ghost upper-case hidden text-xl md:flex" href="{{ route('home') }}">Frituur Heidi</a>
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
-                <li><a>Over Ons</a></li>
-                <li><a>Menu</a></li>
-                <li><a>Contact</a></li>
+                <li><a class="btn btn-ghost" href="#aboutus">Over Ons</a></li>
+                <li><a class="btn btn-ghost" href="{{ route('order.main') }}">Menu</a></li>
+                <li><a class="btn btn-ghost" href="#contactus">Contact</a></li>
                 @if (Auth::check())
                     <li><a href="{{ route('logout') }}">Logout</a></li>
                 @else
