@@ -34,7 +34,7 @@
                     @endif
                 </ul>
             </div>
-            <a class="btn btn-ghost upper-case hidden text-xl md:flex">Frituur Heidi</a>
+            <a class="btn btn-ghost upper-case hidden text-xl md:flex" href="{{ route('home') }}">Frituur Heidi</a>
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
