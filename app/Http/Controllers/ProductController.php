@@ -17,8 +17,10 @@ class ProductController extends Controller
         $products = [];
         if ($category_id != -1) {
             $products = Product::where('category_id', '=', $category_id)->get();
+            // Add the products information into its category
             foreach ($products as $product) {
                 $productOptions = OptionProduct::where('product_id', '=', $product->id)->get();
+                // Add the available product options information into its product inside the category
                 foreach ($productOptions as $option) {
                     $opt = Option::find($option->option_id);
                     $option->name = $opt->name;

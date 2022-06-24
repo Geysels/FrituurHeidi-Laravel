@@ -30,7 +30,7 @@ class CheckoutController extends Controller
 
         // Create the order and add the products
         $order_id = $this->createOrder();
-        $this->addProductsToOrder($cart->getItems(), $order_id);
+        $this->addProductsToOrder($order_id, $cart->getItems());
 
         // Empty the cart
         $cart->reset($request);
@@ -51,7 +51,7 @@ class CheckoutController extends Controller
         return $order->id;
     }
 
-    public function addProductsToOrder($cartItems, int $order_id)
+    public function addProductsToOrder(int $order_id, $cartItems)
     {
         foreach ($cartItems as $cartItem) {
             $order_product = new OrderProduct;
