@@ -11,33 +11,20 @@ class RegistrationController extends Controller
     {
         return view('registration.register-content');
     }
-    
+
     public function store()
     {
         $this->validate(request(), [
             'name' => 'required',
             'email' => 'required|email',
+            'password' => 'required',
             'telephone' => 'required',
-            'password' => 'required'
         ]);
-        
-        $user = User::create(request(['name', 'email', 'password']));
-        
+
+        $user = User::create(request(['name', 'email', 'password', 'telephone']));
+
         auth()->login($user);
-        
+
         return redirect()->to('/#');
     }
-} 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+}

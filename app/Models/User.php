@@ -16,6 +16,7 @@ class User extends \TCG\Voyager\Models\User
         'name',
         'email',
         'password',
+        'telephone',
     ];
 
     protected $hidden = [
@@ -26,5 +27,4 @@ class User extends \TCG\Voyager\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
 }
