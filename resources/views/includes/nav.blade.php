@@ -11,9 +11,9 @@
                 </label>
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow">
-                    <li><a>Over Ons</a></li>
-                    <li><a>Menu</a></li>
-                    <li><a>Contact</a></li>
+                    <li><a href="#aboutus">Over Ons</a></li>
+                    <li><a href="{{ route('order.main') }}">Menu</a></li>
+                    <li><a href="#contactus">Contact</a></li>
 
                     @if (Auth::check())
                         <li><a href="{{ route('logout') }}">Logout</a></li>
