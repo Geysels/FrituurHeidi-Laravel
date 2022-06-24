@@ -9,6 +9,7 @@ use App\Order;
 use App\OrderProduct;
 use App\OrderProductOption;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -40,7 +41,7 @@ class CheckoutController extends Controller
     public function createOrder(): int
     {
         $order = new Order;
-        $order->user_id = 7; // TODO: Get the user_id from the login
+        $order->user_id = Auth::id();
         // Format the pickuptime to YYYY-MM-DD hh:mm:ss
         $time = request('pickuptime');
         $date = new DateTime;
