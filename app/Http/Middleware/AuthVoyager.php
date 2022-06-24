@@ -10,12 +10,13 @@ class AuthVoyager
 {
     public function handle(Request $request, Closure $next, string $role)
     {
-        if(!auth()->user()){
+        if (!auth()->user()) {
             return response()->view('login');
-        }else{
+        } else {
             $dbrole = Role::find(auth()->user()->role_id)->name;
-            if($dbrole != $role && $dbrole != 'admin'){
-                abort(403);
+            if ($dbrole != $role && $dbrole != 'admin') {
+                return redirect()->route('home');
+                // abort(403);
             }
         }
         return $next($request);
