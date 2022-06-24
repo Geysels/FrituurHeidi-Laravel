@@ -27,7 +27,7 @@ class CheckoutController extends Controller
     {
         // Check that there is something in the cart
         $cart = Cart::getInstance($request);
-        if ($cart == null || $cart->getTotalQty() == 0) return;
+        if ($cart == null || $cart->isEmpty()) return;
 
         // Create the order and add the products
         $order_id = $this->createOrder();

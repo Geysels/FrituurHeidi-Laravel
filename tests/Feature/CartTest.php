@@ -32,7 +32,7 @@ class CartTest extends TestCase
 
         $response->assertSessionHas('cart', function (Cart $cart) {
             assertEquals(0.0, $cart->getTotalPrice());
-            assertEquals(0, $cart->getTotalQty());
+            assertTrue($cart->isEmpty());
             return true;
         });
     }

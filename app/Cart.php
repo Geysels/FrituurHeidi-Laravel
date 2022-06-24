@@ -42,6 +42,11 @@ class Cart
         return count($this->items);
     }
 
+    public function isEmpty(): bool
+    {
+        return $this->getTotalQty() == 0;
+    }
+
     public function getTotalPrice(): float
     {
         // Sum all the prices from the cart
@@ -50,8 +55,10 @@ class Cart
         }, 0);
     }
 
-    public function addProduct(Request $request, $product, $product_id): void
+    public function addProduct(Request $request, $product_id, $selectedOptions): void
     {
+        $product = Product::find($product_id);
+
         // If the same product is in the cart, just add an extra one
         if (array_key_exists($product_id, $this->items)) {
             $storedItem = $this->items[$product_id];

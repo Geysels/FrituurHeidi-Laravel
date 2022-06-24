@@ -34,7 +34,7 @@ Route::get('/bestellen/{id}', [
     'index'
 ])->middleware('auth')->name('getProductsFromCategory');
 
-Route::get('/add-to-cart/{id}', [
+Route::post('/add-to-cart', [
     CartController::class,
     'addProductToCart'
 ])->middleware('auth')->name('addToCart');

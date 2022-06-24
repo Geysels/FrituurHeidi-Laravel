@@ -9,11 +9,12 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function addProductToCart(Request $request, $product_id)
+    public function addProductToCart(Request $request)
     {
-        $product = Product::find($product_id);
+        $product_id = $request->input('productId');
+        $selectedOptions = $request->input('selectedOptions');
 
-        Cart::getInstance($request)->addProduct($request, $product, $product->id);
+        Cart::getInstance($request)->addProduct($request, $product_id, $selectedOptions);
 
         return back();
     }
