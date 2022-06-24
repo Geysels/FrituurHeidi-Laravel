@@ -1,6 +1,6 @@
-<section>
-    <div class="mt-12 flex flex-col justify-between p-6 md:flex-row">
-        <div class="discover flex flex-col justify-center text-center md:w-2/4">
+<section class="start2">
+    <div class="line2 mt-12 flex flex-col justify-between p-6 md:flex-row">
+        <div class="flex flex-col justify-center text-center md:w-2/4">
             <h1 class="text-9xl">Discover</h1>
             <h2 class="mb-3 text-3xl text-slate-50 md:text-4xl">Eigenaars</h2>
             <i class="fas fa-asterisk fa-2xl"></i>
@@ -17,11 +17,13 @@
             <a href="{{ route('order.main') }}"><button class="btn btn-primary">Contacteer Ons</button></a>
         </div>
         <div class="mt-5 flex">
-            <figure class="image"><img src="{{ asset('img/fast.jpg') }}" alt="fast"></figure>
+            <figure><img src="{{ asset('img/fast.jpg') }}" alt="fast"></figure>
         </div>
     </div>
+</section>
+<section class="start3">
     <div class="my-20 bg-cover bg-center" style="background-image: url('{{ asset('img/divider.jpeg') }}')">
-        <div class="flex flex-col justify-center bg-stone-900 bg-opacity-70 p-6 text-center xl:p-24">
+        <div class="line3 flex flex-col justify-center bg-stone-900 bg-opacity-70 p-6 text-center xl:p-24">
             <h1 class="text-9xl">Tasteful</h1>
             <h2 class="mb-3 text-3xl text-slate-50 md:text-4xl">Ruime Keuze</h2>
             <a href="{{ route('order.main') }}"><button class="btn btn-primary">Ontdek Onze Menu</button></a>
@@ -29,28 +31,40 @@
     </div>
 </section>
 
-
-<script type="text/javascript">
-    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(window.navigator.userAgent)) {
-        gsap.to(".discover", {
-            scrollTrigger: {
-                trigger: ".discover",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1
-            },
-            x: 50
-        })
-
-        gsap.to(".image", {
-            scrollTrigger: {
-                trigger: ".image",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1,
-            },
-            x: -50,
-
-        })
-    }
+<script>
+    ScrollTrigger.create({
+        trigger: 'start2',
+        start: 'top top',
+        endTrigger: 'start3',
+        end: 'bottom top',
+        pin: '.pin-me'
+    })
+    let tl2 = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.start2',
+            start: "top center",
+            end: "bottom bottom",
+            scrub: 1,
+            markers: true,
+        }
+    });
+    tl2.from('.line2', 1, {
+        opacity: 0,
+        scale: 1.5,
+        delay: 0,
+    })
+    let tl3 = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.start3',
+            start: "top center",
+            end: "bottom bottom",
+            scrub: 1,
+            markers: true,
+        }
+    });
+    tl3.from('.line3', 1, {
+        opacity: 0,
+        scale: 2,
+        delay: 1,
+    })
 </script>
