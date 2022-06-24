@@ -40,7 +40,7 @@
             <ul class="menu menu-horizontal p-0">
                 <li><a class="btn btn-ghost" href="#aboutus">Over Ons</a></li>
                 <li><a class="btn btn-ghost" href="{{ route('order.main') }}">Menu</a></li>
-                <li><a class="btn btn-ghost" href="#">Contact</a></li>
+                <li><a class="btn btn-ghost" href="#contactus">Contact</a></li>
                 @if (Auth::check())
                     <li><a href="{{ route('logout') }}">Logout</a></li>
                 @else
