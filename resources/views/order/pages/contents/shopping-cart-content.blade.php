@@ -6,14 +6,14 @@
                 <i class="fa-solid fa-trash-can fa-lg"></i>
             </a>
         </div>
-        @foreach ($storedItems as $storedItem)
+        @foreach ($cartItems as $cartItem)
             <div class="flex justify-between">
                 <p>
-                    <a href="{{ route('removeFromCart', ['id' => $storedItem['product']->id]) }}">
+                    <a href="{{ route('removeFromCart', ['id' => $loop->index]) }}">
                         <i class="fa-solid fa-minus"></i></a>
-                    {{ $storedItem['qty'] }}x {{ $storedItem['product']->name }}
+                    {{ $cartItem->getProductName() }}
                 </p>
-                <p>€ {{ $storedItem['subTotal'] }}</p>
+                <p>€ {{ $cartItem->getSubtotal() }}</p>
             </div>
         @endforeach
         <div class="divider"></div>
@@ -49,14 +49,17 @@
                         <i class="fa-solid fa-trash-can fa-lg"></i>
                     </a>
                 </div>
-                @foreach ($storedItems as $storedItem)
+                @foreach ($cartItems as $cartItem)
                     <div class="flex justify-between">
                         <p>
-                            <a href="{{ route('removeFromCart', ['id' => $storedItem['product']->id]) }}">
+                            <a href="{{ route('removeFromCart', ['id' => $loop->index]) }}">
                                 <i class="fa-solid fa-minus"></i></a>
-                            {{ $storedItem['qty'] }}x {{ $storedItem['product']->name }}
+                            {{ $cartItem->getProductName() }}
                         </p>
-                        <p>€ {{ $storedItem['subTotal'] }}</p>
+                        @foreach ($cartItem->getOptionNames() as $optionName)
+                            <p>{{ $optionName }}</p>
+                        @endforeach
+                        <p>€ {{ $cartItem->getSubtotal() }}</p>
                     </div>
                 @endforeach
                 <div class="divider"></div>

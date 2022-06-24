@@ -31,7 +31,7 @@ class ProductController extends Controller
         }
         $cart = Cart::getInstance($request);
         return view('order.main', [
-            'storedItems' => $cart->getItems(),
+            'cartItems' => $cart->getItems(),
             'totalPrice' => $cart->getTotalPrice(),
             'categories' => $categories,
             'products' => $products,

@@ -2,41 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
 use App\Cart;
-use App\Category;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     public function addProductToCart(Request $request)
     {
-        $product_id = $request->input('productId');
-        $selectedOptions = $request->input('selectedOptions');
+        $selectedProduct = json_decode($request->input('selectedProduct'));
+        // If the are no selectedOptions then json_decode will fail. This checks for the null
+        $selectedOptions_json = $request->input('selectedOptions');
+        if ($selectedOptions_json) {
+            $selectedOptions = array_map('json_decode', $request->input('selectedOptions'));
+        } else {
+            $selectedOptions = null;
+        }
 
-        Cart::getInstance($request)->addProduct($request, $product_id, $selectedOptions);
+        Cart::getInstance($request)->addProduct($request, $selectedProduct, $selectedOptions);
 
         return back();
     }
 
-    public function removeProductFromCart(Request $request, $product_id)
+    public function removeProductFromCart(Request $request, $position)
     {
-        Cart::getInstance($request)->removeProduct($request, $product_id);
+        Cart::getInstance($request)->removeProduct($request, $position);
 
         return back();
     }
-
-    // public function getCart(Request $request)
-    // {
-    //     $cart = Cart::getInstance($request);
-    //     $categories = Category::all();
-
-    //     return view('order.pages.shopping-cart', [
-    //         'storedItems' => $cart->getItems(),
-    //         'totalPrice' => $cart->getTotalPrice(),
-    //         'categories' => $categories,
-    //     ]);
-    // }
 
     public function emptyCart(Request $request)
     {

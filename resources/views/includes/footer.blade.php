@@ -1,4 +1,4 @@
-<footer class="footer bg-base-200 text-base-content p-10">
+<footer class="footer bg-base-200 text-base-content p-10" id="contactus">
     <div class="flex flex-col">
         <span class="footer-title">Contactgegevens</span>
         <div class="flex">
@@ -39,5 +39,4 @@
                 </svg></a>
         </div>
     </div>
-    <div id="contactus"></div>
 </footer>

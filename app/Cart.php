@@ -3,11 +3,67 @@
 namespace App;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
+
+class CartItem
+{
+    private $product;
+    private array $options = [];
+    private int $quantity = 0;
+    private float $subTotal = 0.0;
+
+    public function __construct($product, $options)
+    {
+        $this->product = $product;
+        if ($options)
+            $this->options = $options;
+        $this->quantity = 1;
+        $this->subTotal = $this->calculateSubtotal();
+    }
+
+    private function calculateSubtotal(): float
+    {
+        $options_total = array_reduce($this->options, function (float $accumulator, $option) {
+            return $accumulator + $option->price;
+        }, 0);
+        return ($this->product->price + $options_total) * $this->quantity;
+    }
+
+    public function getSubtotal(): float
+    {
+        return $this->subTotal;
+    }
+
+    public function getOptionNames(): array
+    {
+        // Similar to foreach ($this->options as $option) return $option->name
+        // array_map(fn ($array_item) => $array_item->name, $array)
+        return array_map(fn ($option) => (string) $option->name, $this->options);
+    }
+
+    public function getOptionIDs(): array
+    {
+        return array_map(fn ($option) => $option->option_id, $this->options);
+    }
+
+    public function getProductName(): string
+    {
+        return (string) $this->product->name;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
+
+    public function getProductId(): int
+    {
+        return $this->product->id;
+    }
+}
 
 class Cart
 {
-    private $items = [];
+    private $cartItems = [];
 
     // Singleton pattern. Restricts the instantiation of a class to one "single" instance
     private static ?Cart $instance = null; // Cart|null
@@ -35,11 +91,11 @@ class Cart
 
     public function getItems(): array
     {
-        return $this->items;
+        return $this->cartItems;
     }
     public function getTotalQty(): int
     {
-        return count($this->items);
+        return count($this->cartItems);
     }
 
     public function isEmpty(): bool
@@ -50,49 +106,29 @@ class Cart
     public function getTotalPrice(): float
     {
         // Sum all the prices from the cart
-        return array_reduce($this->items, function (float $accumulator, $item) {
-            return $accumulator + $item['product']->price * $item['qty'];
+        return array_reduce($this->cartItems, function (float $accumulator, $item) {
+            return $accumulator + $item->getSubtotal();
         }, 0);
     }
 
-    public function addProduct(Request $request, $product_id, $selectedOptions): void
+    public function addProduct(Request $request, $selectedProduct, ?array $selectedOptions): void
     {
-        $product = Product::find($product_id);
-
-        // If the same product is in the cart, just add an extra one
-        if (array_key_exists($product_id, $this->items)) {
-            $storedItem = $this->items[$product_id];
-            $storedItem['qty']++;
-            $storedItem['subTotal'] = $product->price * $storedItem['qty'];
-        } else {
-            $storedItem = ['qty' => 1, 'subTotal' => $product->price, 'product' => $product];
-        }
-
-        $this->items[$product_id] = $storedItem;
+        $cartItem = new CartItem($selectedProduct, $selectedOptions);
+        array_push($this->cartItems, $cartItem);
 
         $request->session()->put('cart', $this);
     }
 
-    public function removeProduct(Request $request, $product_id): void
+    public function removeProduct(Request $request, $position): void
     {
-        if (array_key_exists($product_id, $this->items)) {
-            $storedItem = $this->items[$product_id];
-            // If there is only 1 product is in the cart, remove it completely
-            if ($storedItem['qty'] == 1) {
-                $this->items = Arr::except($this->items, [$product_id]);
-            } else { // If the are more than 1 of the same product in the cart, remove 1
-                $storedItem['qty']--;
-                $storedItem['subTotal'] = $storedItem['product']->price * $storedItem['qty'];
-                $this->items[$product_id] = $storedItem;
-            }
-            $request->session()->put('cart', $this);
-        }
+        array_splice($this->cartItems, $position, 1);
+        $request->session()->put('cart', $this);
     }
 
     // Empty the cart
     public function reset(Request $request): void
     {
-        $this->items = [];
+        $this->cartItems = [];
         $request->session()->forget('cart');
     }
 }

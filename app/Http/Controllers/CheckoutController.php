@@ -18,7 +18,7 @@ class CheckoutController extends Controller
         $cart = Cart::getInstance($request);
 
         return view('order.pages.checkout', [
-            'storedItems' => $cart->getItems(),
+            'cartItems' => $cart->getItems(),
             'totalPrice' => $cart->getTotalPrice(),
         ]);
     }
@@ -56,16 +56,16 @@ class CheckoutController extends Controller
     {
         foreach ($cartItems as $cartItem) {
             $order_product = new OrderProduct;
-            $order_product->price = $cartItem['product']->price;
-            $order_product->amount = $cartItem['qty'];
+            $order_product->price = $cartItem->getSubtotal();
+            $order_product->amount = $cartItem->getQuantity();
             // $order_product->remark = $cartItem['product']->remark;
             $order_product->order_id = $order_id;
-            $order_product->product_id = $cartItem['product']->id;
+            $order_product->product_id = $cartItem->getProductId();;
 
             $order_product->save();
             $order_product_id = $order_product->id;
 
-            $this->addOptionsToProductInOrder($order_product_id, $cartItem['product']->options);
+            $this->addOptionsToProductInOrder($order_product_id, $cartItem->getOptionIDs());
         }
     }
 
@@ -75,7 +75,7 @@ class CheckoutController extends Controller
         foreach ($options as $option) {
             $order_product_option = new OrderProductOption;
             $order_product_option->order_product_id = $order_product_id;
-            $order_product_option->option_id = $option->id;
+            $order_product_option->option_id = $option;
 
             $order_product_option->save();
         }

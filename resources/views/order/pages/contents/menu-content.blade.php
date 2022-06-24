@@ -6,10 +6,10 @@
             <p class="italic">{{ $product->remark }}</p>
             <p class="text-xl font-semibold">€ {{ $product->price }}</p>
 
-            <input name="productId" value="{{ $product->id }}" hidden />
+            <input name="selectedProduct" value="{{ $product }}" hidden />
             {{-- Product Options --}}
             @foreach ($product->options as $option)
-                <input type="checkbox" name="selectedOptions[]" value="{{ $option->id }}">
+                <input type="checkbox" name="selectedOptions[]" value="{{ $option }}">
                 {{ $option->name }}
             @endforeach
 
