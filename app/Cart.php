@@ -33,11 +33,16 @@ class CartItem
         return $this->subTotal;
     }
 
-    public function getOptionNames(): ?array
+    public function getOptionNamesArray(): ?array
     {
         // Similar to foreach ($this->options as $option) return $option->name
         // array_map(fn ($array_item) => $array_item->name, $array)
         return array_map(fn ($option) => (string) $option->name, $this->options);
+    }
+
+    public function getOptionNames(): string
+    {
+        return join(", ", $this->getOptionNamesArray());
     }
 
     public function getOptionIDs(): ?array
@@ -68,7 +73,7 @@ class Cart
     // Singleton pattern. Restricts the instantiation of a class to one "single" instance
     private static ?Cart $instance = null; // Cart|null
 
-    // This is the only way to get the Cart
+    // This is the only way to retrieve the Cart
     public static function getInstance(Request $request): Cart
     {
         // If a cart already exists, it will return it

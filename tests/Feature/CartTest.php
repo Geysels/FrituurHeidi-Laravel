@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -9,6 +10,7 @@ use App\Cart;
 use App\Models\User;
 use App\Product;
 use App\Option;
+use DateTime;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertTrue;
@@ -46,8 +48,8 @@ class CartTest extends TestCase
 
     public function test_one_product()
     {
-        $product = Product::find(1668);
-        $options = [Option::find(5)];
+        $product = Product::find(1668); // Texasburger
+        $options = [Option::find(5)]; // Ketchup
         $expected_price = $product->price + $options[0]->price;
 
         $this->post('/add-to-cart', ['selectedProduct' => $product, 'selectedOptions' => $options])
@@ -94,5 +96,15 @@ class CartTest extends TestCase
                 assertEquals(2, $cart->getTotalQty());
                 return true;
             });
+    }
+
+    public function test_one_product_and_checkout()
+    {
+        $product = Product::find(1668); // Texasburger
+        $options = [Option::find(5)]; // Ketchup
+        $this->post('/add-to-cart', ['selectedProduct' => $product, 'selectedOptions' => $options]);
+
+        $pickuptime = "18:00";
+        $this->post('/checkout/submit', ['pickuptime' => $pickuptime]);
     }
 }

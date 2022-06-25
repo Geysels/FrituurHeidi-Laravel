@@ -2,7 +2,7 @@
     <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
         <ul
-            class="menu text-base-content scrollbar-thin scrollbar-thumb-stone-900 scrollbar-track-gray-100 w-80 overflow-y-auto bg-stone-800 p-4">
+            class="menu text-base-content scrollbar-thin scrollbar-thumb-stone-600 scrollbar-track-gray-100 w-80 overflow-y-auto bg-stone-800 p-4">
             @include('order.pages.contents.shopping-cart-content')
             <div class="divider"></div>
             <li><a href="{{ route('order.main') }}"

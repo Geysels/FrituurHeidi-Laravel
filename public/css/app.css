@@ -3096,13 +3096,21 @@ body[dir="rtl"] .checkbox:checked,
   border-bottom-right-radius: inherit;
   border-bottom-left-radius: unset;
 }
-.my-20 {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+.my-20 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .mr-3 {
   margin-right: 0.75rem;
@@ -3137,6 +3145,9 @@ body[dir="rtl"] .checkbox:checked,
 .mt-5 {
   margin-top: 1.25rem;
 }
+.mt-4 {
+  margin-top: 1rem;
+}
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -3146,8 +3157,14 @@ body[dir="rtl"] .checkbox:checked,
 .mt-12 {
   margin-top: 3rem;
 }
-.mt-4 {
-  margin-top: 1rem;
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.mr-4 {
+  margin-right: 1rem;
+}
+.mr-5 {
+  margin-right: 1.25rem;
 }
 .block {
   display: block;
@@ -3179,14 +3196,14 @@ body[dir="rtl"] .checkbox:checked,
 .h-6 {
   height: 1.5rem;
 }
-.h-4 {
-  height: 1rem;
-}
 .h-40 {
   height: 10rem;
 }
 .min-h-screen {
   min-height: 100vh;
+}
+.w-96 {
+  width: 24rem;
 }
 .w-5 {
   width: 1.25rem;
@@ -3203,9 +3220,6 @@ body[dir="rtl"] .checkbox:checked,
 .w-6 {
   width: 1.5rem;
 }
-.w-96 {
-  width: 24rem;
-}
 .max-w-md {
   max-width: 28rem;
 }
@@ -3221,11 +3235,26 @@ body[dir="rtl"] .checkbox:checked,
 .grid-flow-col {
   grid-auto-flow: column;
 }
+.flex-row {
+  flex-direction: row;
+}
 .flex-col {
   flex-direction: column;
 }
+.items-start {
+  align-items: flex-start;
+}
 .items-center {
   align-items: center;
+}
+.items-baseline {
+  align-items: baseline;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
 }
 .justify-center {
   justify-content: center;
@@ -3233,33 +3262,38 @@ body[dir="rtl"] .checkbox:checked,
 .justify-between {
   justify-content: space-between;
 }
+.justify-around {
+  justify-content: space-around;
+}
 .gap-4 {
   gap: 1rem;
+}
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-x-8 > :not([hidden]) ~ :not([hidden]) {
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
-  margin-right: calc(2rem * var(--tw-space-x-reverse));
-  margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-x-12 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(3rem * var(--tw-space-x-reverse));
-  margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
+.self-start {
+  align-self: flex-start;
 }
-.space-x-16 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(4rem * var(--tw-space-x-reverse));
-  margin-left: calc(4rem * calc(1 - var(--tw-space-x-reverse)));
+.self-end {
+  align-self: flex-end;
 }
-.space-x-6 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+.self-center {
+  align-self: center;
+}
+.justify-self-end {
+  justify-self: end;
 }
 .overflow-y-auto {
   overflow-y: auto;
@@ -3289,6 +3323,10 @@ body[dir="rtl"] .checkbox:checked,
 .bg-stone-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(28 25 23 / var(--tw-bg-opacity));
+}
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 .bg-opacity-80 {
   --tw-bg-opacity: 0.8;
@@ -3345,6 +3383,10 @@ body[dir="rtl"] .checkbox:checked,
 .text-right {
   text-align: right;
 }
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -3364,10 +3406,6 @@ body[dir="rtl"] .checkbox:checked,
   font-size: 4.5rem;
   line-height: 1;
 }
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -3380,18 +3418,11 @@ body[dir="rtl"] .checkbox:checked,
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
 .font-medium {
   font-weight: 500;
 }
 .font-semibold {
   font-weight: 600;
-}
-.font-bold {
-  font-weight: 700;
 }
 .italic {
   font-style: italic;

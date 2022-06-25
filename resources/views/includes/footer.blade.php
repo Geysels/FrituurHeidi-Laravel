@@ -38,13 +38,13 @@
     </div>
     <div class="flex flex-col">
         <span class="footer-title">Contactgegevens</span>
-        <div class="flex">
+        <div class="flex items-center">
             <span class="mr-3 justify-center"><i class="fa-solid fa-phone fa-lg"></i></span>
             <a href="tel:0456015297">
                 <p class="text-base text-slate-50">0456/01 52 97</p>
             </a>
         </div>
-        <div class="flex">
+        <div class="flex items-center">
             <span class="mr-3 justify-center"><i class="fa-solid fa-envelope fa-lg"></i></span>
             <a href="mailto:info@frituurheidi.com">
                 <p class="text-base text-slate-50">info@frituurheidi.com</p>

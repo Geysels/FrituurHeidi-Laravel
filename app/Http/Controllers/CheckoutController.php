@@ -27,10 +27,11 @@ class CheckoutController extends Controller
     {
         // Check that there is something in the cart
         $cart = Cart::getInstance($request);
-        if (!$cart || $cart->isEmpty()) return;
+        if (!$cart || $cart->isEmpty()) abort(400); // Failure!
 
-        // Create the order and add the products
-        $order_id = $this->createOrder();
+        // Create the order
+        $time = request('pickuptime');
+        $order_id = $this->createOrder($time);
         $this->addProductsToOrder($order_id, $cart->getItems());
 
         // Empty the cart
@@ -39,10 +40,9 @@ class CheckoutController extends Controller
     }
 
     // Creates and order and returns its id
-    private function createOrder(): int
+    private function createOrder(string $time): int
     {
         // Format the pickuptime
-        $time = request('pickuptime');
         $date = new DateTime; // Today
         $date->setTimestamp(strtotime($time)); // Only change the time
 
