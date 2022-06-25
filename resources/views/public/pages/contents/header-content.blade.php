@@ -8,7 +8,7 @@
                 <i class="fas fa-asterisk fa-2xl"></i>
                 <div class="divider"></div>
             </div>
-            <div class="xmt-6 max-w-md">
+            <div class="mt-6 max-w-md">
                 <p class="text-slate-50">Zaakvoerster Heidi en team verwelkomen u in ons sfeervol eethuisje en
                     frituur. </p>
                 <p class="mb-5 text-slate-50">
