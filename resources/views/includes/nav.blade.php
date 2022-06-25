@@ -16,7 +16,7 @@
                     <li><a href="#contactus">Contact</a></li>
 
                     @if (Auth::check())
-                        <li><a href="{{ route('logout') }}">Logout</a></li>
+                        <li><a href="{{ route('logout') }}">Uitloggen</a></li>
                     @else
                         <li tabindex="0">
                             <a class="justify-between">
@@ -27,8 +27,8 @@
                                 </svg>
                             </a>
                             <ul class="bg-stone-800 p-2">
-                                <li><a href="{{ route('login') }}">Aanmelden</a></li>
-                                <li><a href="{{ route('register') }}">Registreren</a></li>
+                                <li><a href="{{ route('login') }}">Inloggen</a></li>
+                                <li><a href="{{ route('register') }}">Aanmelden</a></li>
                             </ul>
                         </li>
                     @endif
@@ -42,7 +42,7 @@
                 <li><a class="btn btn-ghost" href="{{ route('order.main') }}">Menu</a></li>
                 <li><a class="btn btn-ghost" href="#contactus">Contact</a></li>
                 @if (Auth::check())
-                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                    <li><a href="{{ route('logout') }}">Uitloggen</a></li>
                 @else
                     <li tabindex="0">
                         <a>
@@ -53,8 +53,8 @@
                             </svg>
                         </a>
                         <ul class="bg-stone-800 p-2">
-                            <li><a href="{{ route('login') }}">Aanmelden</a></li>
-                            <li><a href="{{ route('register') }}">Registreren</a></li>
+                            <li><a href="{{ route('login') }}">Inloggen</a></li>
+                            <li><a href="{{ route('register') }}">Aanmelden</a></li>
                         </ul>
                     </li>
                 @endif
