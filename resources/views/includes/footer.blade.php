@@ -6,7 +6,7 @@
                 openingsuren tijdens
                 feestdagen of bij ziekte worden geplaatst op onze facebook.</p>
         </div>
-        <div class="flex justify-between space-x-4">
+        <div class="flex justify-between space-x-6 md:space-x-16">
             <div class="flex flex-col text-slate-50">
                 <p>Maandag</p>
                 <p>Dinsdag</p>
@@ -58,7 +58,7 @@
         </div>
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2507.605768293609!2d5.395229115753556!3d51.06036677956415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c12884abbfe6ad%3A0xb9329e7189686060!2sFrituur%20Heidi!5e0!3m2!1sen!2sbe!4v1656173514239!5m2!1sen!2sbe"
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="hidden lg:flex"
+            width="450" height="250" style="border:0;" allowfullscreen="" loading="lazy" class="hidden lg:flex"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </footer>
