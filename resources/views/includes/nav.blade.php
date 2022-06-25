@@ -14,9 +14,19 @@
                     <li><a href="#aboutus">Over Ons</a></li>
                     <li><a href="{{ route('order.main') }}">Menu</a></li>
                     <li><a href="#contactus">Contact</a></li>
-
                     @if (Auth::check())
-                        <li><a href="{{ route('logout') }}">Uitloggen</a></li>
+                        <li tabindex="0">
+                            <a>
+                                {{ Auth::user()->name }}
+                                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20"
+                                    height="20" viewBox="0 0 24 24">
+                                    <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                                </svg>
+                            </a>
+                            <ul class="bg-stone-800 p-2">
+                                <li><a href="{{ route('logout') }}" class="btn btn-ghost">Uitloggen</a></li>
+                            </ul>
+                        </li>
                     @else
                         <li tabindex="0">
                             <a class="justify-between">
@@ -27,8 +37,8 @@
                                 </svg>
                             </a>
                             <ul class="bg-stone-800 p-2">
-                                <li><a href="{{ route('login') }}">Inloggen</a></li>
-                                <li><a href="{{ route('register') }}">Aanmelden</a></li>
+                                <li><a href="{{ route('login') }}" class="btn btn-ghost">Inloggen</a></li>
+                                <li><a href="{{ route('register') }}" class="btn btn-ghost">Aanmelden</a></li>
                             </ul>
                         </li>
                     @endif
@@ -42,7 +52,18 @@
                 <li><a class="btn btn-ghost" href="{{ route('order.main') }}">Menu</a></li>
                 <li><a class="btn btn-ghost" href="#contactus">Contact</a></li>
                 @if (Auth::check())
-                    <li><a href="{{ route('logout') }}">Uitloggen</a></li>
+                    <li tabindex="0">
+                        <a>
+                            {{ Auth::user()->name }}
+                            <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24">
+                                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+                            </svg>
+                        </a>
+                        <ul class="bg-stone-800 p-2">
+                            <li><a href="{{ route('logout') }}" class="btn btn-ghost">Uitloggen</a></li>
+                        </ul>
+                    </li>
                 @else
                     <li tabindex="0">
                         <a>
@@ -53,8 +74,8 @@
                             </svg>
                         </a>
                         <ul class="bg-stone-800 p-2">
-                            <li><a href="{{ route('login') }}">Inloggen</a></li>
-                            <li><a href="{{ route('register') }}">Aanmelden</a></li>
+                            <li><a href="{{ route('login') }}" class="btn btn-ghost">Inloggen</a></li>
+                            <li><a href="{{ route('register') }}" class="btn btn-ghost">Aanmelden</a></li>
                         </ul>
                     </li>
                 @endif
