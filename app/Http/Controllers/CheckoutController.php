@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
-use App\Category;
 use App\Order;
 use App\OrderProduct;
 use App\OrderProductOption;
@@ -36,7 +35,7 @@ class CheckoutController extends Controller
 
         // Empty the cart
         $cart->reset($request);
-        return redirect('/'); // Success!
+        return redirect()->route('home')->with('toast_success', 'We hebben je bestelling goed ontvangen!');
     }
 
     // Creates and order and returns its id

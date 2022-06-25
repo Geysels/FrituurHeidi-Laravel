@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
@@ -21,20 +22,19 @@ class CartController extends Controller
 
         Cart::getInstance($request)->addProduct($request, $selectedProduct, $selectedOptions);
 
-        return back();
+        return back()->with("toast_success", "Het product is toegevoegd aan je winkelwagen");
     }
 
     public function removeProductFromCart(Request $request, $position)
     {
         Cart::getInstance($request)->removeProduct($request, $position);
 
-        return back();
+        return back()->with("toast_warning", "Het product is verwijderd!");
     }
 
     public function emptyCart(Request $request)
     {
         Cart::getInstance($request)->reset($request);
-
-        return redirect()->route('order.main');
+        return redirect()->route('order.main')->with("toast_warning", "Je winkelwagen is leeg!");
     }
 }

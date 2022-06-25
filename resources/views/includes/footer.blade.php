@@ -2,11 +2,12 @@
     <div class="w-96">
         <div class="flex flex-col">
             <span class="footer-title">Openingsuren</span>
-            <p class="italic">Onderstaande openingsuren zijn in normale omstandigheden voor meer informatie over de
+            <p class="text-sm italic">Onderstaande openingsuren zijn in normale omstandigheden voor meer informatie over
+                de
                 openingsuren tijdens
                 feestdagen of bij ziekte worden geplaatst op onze facebook.</p>
         </div>
-        <div class="flex justify-between space-x-6 md:space-x-16">
+        <div class="mt-4 flex justify-between space-x-6 md:space-x-16">
             <div class="flex flex-col text-slate-50">
                 <p>Maandag</p>
                 <p>Dinsdag</p>

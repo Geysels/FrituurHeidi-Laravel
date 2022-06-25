@@ -11,6 +11,7 @@
         @yield('content')
     </main>
     @include('includes.footer')
+    @include('sweetalert::alert')
 </body>
 
 </html>

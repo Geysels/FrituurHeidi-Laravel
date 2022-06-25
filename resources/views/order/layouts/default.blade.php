@@ -17,6 +17,7 @@
         @include('includes.sidebar')
     </div>
     @include('includes.footer')
+    @include('sweetalert::alert')
 </body>
 
 </html>
