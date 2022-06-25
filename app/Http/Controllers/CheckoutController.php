@@ -27,7 +27,7 @@ class CheckoutController extends Controller
     {
         // Check that there is something in the cart
         $cart = Cart::getInstance($request);
-        if ($cart == null || $cart->isEmpty()) return;
+        if (!$cart || $cart->isEmpty()) return;
 
         // Create the order and add the products
         $order_id = $this->createOrder();
@@ -35,41 +35,50 @@ class CheckoutController extends Controller
 
         // Empty the cart
         $cart->reset($request);
-        return redirect('/');
+        return redirect('/'); // Success!
     }
 
-    public function createOrder(): int
+    // Creates and order and returns its id
+    private function createOrder(): int
     {
-        $order = new Order;
-        $order->user_id = Auth::id();
-        // Format the pickuptime to YYYY-MM-DD hh:mm:ss
+        // Format the pickuptime
         $time = request('pickuptime');
-        $date = new DateTime;
-        $date->setTimestamp(strtotime($time));
-        $order->pickuptime = $date;
+        $date = new DateTime; // Today
+        $date->setTimestamp(strtotime($time)); // Only change the time
 
+        // Construct the order
+        $order = new Order;
+        $order->pickuptime = $date;
+        $order->user_id = Auth::id();
+
+        // Save in database
         $order->save();
+
+        // Return the order id from database
         return $order->id;
     }
 
-    public function addProductsToOrder(int $order_id, $cartItems)
+    private function addProductsToOrder(int $order_id, $cartItems)
     {
         foreach ($cartItems as $cartItem) {
             $order_product = new OrderProduct;
             $order_product->price = $cartItem->getSubtotal();
             $order_product->amount = $cartItem->getQuantity();
-            // $order_product->remark = $cartItem['product']->remark;
+            // $order_product->remark = $cartItem->getRemark();
             $order_product->order_id = $order_id;
             $order_product->product_id = $cartItem->getProductId();;
 
+            // Save in database
             $order_product->save();
+
+            // Return the order_product id from database
             $order_product_id = $order_product->id;
 
             $this->addOptionsToProductInOrder($order_product_id, $cartItem->getOptionIDs());
         }
     }
 
-    public function addOptionsToProductInOrder(int $order_product_id, $options)
+    private function addOptionsToProductInOrder(int $order_product_id, $options)
     {
         if ($options == null) return;
         foreach ($options as $option) {
@@ -77,6 +86,7 @@ class CheckoutController extends Controller
             $order_product_option->order_product_id = $order_product_id;
             $order_product_option->option_id = $option;
 
+            // Save in database
             $order_product_option->save();
         }
     }

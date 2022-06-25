@@ -22,7 +22,6 @@ class DashboardController extends Controller
     {
         Auth::logout();
 
-        // return redirect()->route('voyager.login');
         return redirect()->route('home');
     }
 }

@@ -1,6 +1,6 @@
 <section class="start2">
     <div class="line2 mt-12 flex flex-col justify-between p-6 md:flex-row">
-        <div class="flex flex-col justify-center text-center md:w-2/4"  id="aboutus">
+        <div class="flex flex-col justify-center text-center md:w-2/4" id="aboutus">
             <h1 class="text-9xl">Discover</h1>
             <h2 class="mb-3 text-3xl text-slate-50 md:text-4xl">Eigenaars</h2>
             <i class="fas fa-asterisk fa-2xl"></i>
@@ -45,7 +45,6 @@
             start: "top center",
             end: "bottom bottom",
             scrub: 1,
-            markers: true,
         }
     });
     tl2.from('.line2', 1, {
@@ -59,7 +58,6 @@
             start: "top center",
             end: "bottom bottom",
             scrub: 1,
-            markers: true,
         }
     });
     tl3.from('.line3', 1, {

@@ -11,11 +11,11 @@ use App\OptionProduct;
 
 class ProductController extends Controller
 {
-    public function index(Request $request, $category_id = -1)
+    public function index(Request $request, ?int $category_id = null)
     {
         $categories = Category::where('visible', '=', '1')->get();
         $products = [];
-        if ($category_id != -1) {
+        if ($category_id) {
             $products = Product::where('category_id', '=', $category_id)->get();
             // Add the products information into its category
             foreach ($products as $product) {
@@ -29,7 +29,9 @@ class ProductController extends Controller
                 $product->options = $productOptions;
             }
         }
+
         $cart = Cart::getInstance($request);
+
         return view('order.main', [
             'cartItems' => $cart->getItems(),
             'totalPrice' => $cart->getTotalPrice(),

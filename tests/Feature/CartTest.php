@@ -44,7 +44,7 @@ class CartTest extends TestCase
             });
     }
 
-    public function test_one_item()
+    public function test_one_product()
     {
         $product = Product::find(1668);
         $options = [Option::find(5)];
@@ -59,7 +59,7 @@ class CartTest extends TestCase
             });
     }
 
-    public function test_one_item_and_remove()
+    public function test_one_product_and_remove()
     {
         $product = Product::find(1668);
         $options = [Option::find(5)];
@@ -76,7 +76,7 @@ class CartTest extends TestCase
             });
     }
 
-    public function test_two_items()
+    public function test_two_products()
     {
         $product = Product::find(1668);
         $options = [Option::find(5)];

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class CartItem
 {
     private $product;
-    private array $options = [];
+    private ?array $options = [];
     private int $quantity = 0;
     private float $subTotal = 0.0;
 
@@ -33,14 +33,14 @@ class CartItem
         return $this->subTotal;
     }
 
-    public function getOptionNames(): array
+    public function getOptionNames(): ?array
     {
         // Similar to foreach ($this->options as $option) return $option->name
         // array_map(fn ($array_item) => $array_item->name, $array)
         return array_map(fn ($option) => (string) $option->name, $this->options);
     }
 
-    public function getOptionIDs(): array
+    public function getOptionIDs(): ?array
     {
         return array_map(fn ($option) => $option->option_id, $this->options);
     }
@@ -90,7 +90,7 @@ class Cart
     {
     }
 
-    public function getItems(): array
+    public function getItems(): ?array
     {
         return $this->cartItems;
     }

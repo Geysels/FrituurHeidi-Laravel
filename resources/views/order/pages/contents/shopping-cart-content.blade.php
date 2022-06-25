@@ -28,7 +28,7 @@
                 ingevoerde gegevens en de algemene voorwaarden, privacyverklaring en cookiebeleid.</p>
         </div>
     @else
-        @if (!Session::has('cart') || Session::get('cart')->getTotalQty() == 0)
+        @if (!Session::has('cart') || Session::get('cart')->isEmpty())
             <div class="flex flex-col">
                 <div class="alert alert-warning shadow-lg">
                     <div>

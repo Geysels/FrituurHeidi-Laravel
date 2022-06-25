@@ -9,14 +9,15 @@ class CartController extends Controller
 {
     public function addProductToCart(Request $request)
     {
-        $selectedProduct = json_decode($request->input('selectedProduct'));
-        // If the are no selectedOptions then json_decode will fail. This checks for the null
+        // Get the product
+        $selectedProduct_json = $request->input('selectedProduct');
+        if (!$selectedProduct_json) abort(400); // There is no product to add
+        $selectedProduct = json_decode($selectedProduct_json);
+
+        // Get the product options
         $selectedOptions_json = $request->input('selectedOptions');
-        if ($selectedOptions_json) {
-            $selectedOptions = array_map('json_decode', $request->input('selectedOptions'));
-        } else {
-            $selectedOptions = null;
-        }
+        // If the are no selectedOptions then json_decode will fail. This checks for the null
+        $selectedOptions = $selectedOptions_json ? array_map('json_decode', $selectedOptions_json) : null;
 
         Cart::getInstance($request)->addProduct($request, $selectedProduct, $selectedOptions);
 

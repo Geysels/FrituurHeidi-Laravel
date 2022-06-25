@@ -29,7 +29,6 @@
             start: "top center",
             end: "bottom bottom",
             scrub: 1,
-            markers: true,
         }
     });
     tl.from('.line1', 1, {
