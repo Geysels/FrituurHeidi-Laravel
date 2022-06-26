@@ -67,6 +67,9 @@
     <div class="grid-flow-col items-center">
         <p>Frituur Heidi. Al 30 jaar staan wij voor u klaar!</p>
     </div>
+    <div class="grid-flow-col items-center">
+        <a href="https://www.privacypolicygenerator.info/live.php?token=RUZlksrx9G2pMt9tyztpbMtv0P3QdTUj" target="_blank">Privacybeleid</a>
+    </div>
     <div class="md:place-self-center md:justify-self-end">
         <div class="grid grid-flow-col gap-4">
             <a href="https://nl-nl.facebook.com/FrituurHeidiHelchteren/" target="_blank">
