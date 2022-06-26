@@ -11,19 +11,20 @@
                     <label class="label">
                         <span class="label-text">Naam:</span>
                     </label>
-                    <input autocomplete="false" type="text" class="input input-bordered" name="name" />
+                    <input autocomplete="false" type="text" class="input input-bordered" name="name" required />
                     <label class="label">
                         <span class="label-text">Email:</span>
                     </label>
-                    <input autocomplete="false" type="email" class="input input-bordered" name="email" />
+                    <input autocomplete="false" type="email" class="input input-bordered" name="email" required />
                     <label class="label">
                         <span class="label-text">Telefoon:</span>
                     </label>
-                    <input autocomplete="false" type="telephone" class="input input-bordered" name="telephone" />
+                    <input autocomplete="false" type="telephone" class="input input-bordered" name="telephone" required />
                     <label class="label">
                         <span class="label-text">Wachtwoord:</span>
                     </label>
-                    <input autocomplete="new-password" type="password" class="input input-bordered" name="password" />
+                    <input autocomplete="new-password" type="password" class="input input-bordered" name="password"
+                        required />
                 </div>
                 <button type="submit" class="btn btn-primary mt-10">Aanmelden</button>
             </form>
