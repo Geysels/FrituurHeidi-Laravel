@@ -1,90 +1,38 @@
-@extends('voyager::auth.master')
-
+@extends('public.layouts.default')
 @section('content')
-    <div class="login-container">
+    <div class="flex min-h-screen justify-center bg-cover bg-center md:justify-start"
+        style="background-image: url({{ asset('img/home.jpeg') }})">
+        <div class="flex flex-col justify-center bg-stone-900 bg-opacity-80 p-6 text-center xl:p-24">
+            <form method="POST" action="{{ route('voyager.login') }}">
+                @csrf
 
-        <p>{{ __('voyager::login.signin_below') }}</p>
+                <h1 class="mb-7 text-center text-8xl">Log In</h1>
+                @csrf
+                <div class="form-control flex justify-center">
+                    <label class="label">
+                        <span class="label-text">E-mail:</span>
+                    </label>
+                    <input type="text" class="input input-bordered" name="email" id="email" />
 
-        <form action="{{ route('voyager.login') }}" method="POST">
-            {{ csrf_field() }}
-            <div class="form-group form-group-default" id="emailGroup">
-                <label>{{ __('voyager::generic.email') }}</label>
-                <div class="controls">
-                    <input type="text" name="email" id="email" value="{{ old('email') }}"
-                        placeholder="{{ __('voyager::generic.email') }}" class="form-control" required>
+                    <label class="label">
+                        <span class="label-text">Wachtwoord:</span>
+                    </label>
+                    <input type="password" class="input input-bordered" name="password" />
+                    {{-- <div class="form-group" id="rememberMeGroup">
+                        <div class="controls">
+                            <input type="checkbox" name="remember" id="remember" value="1"><label for="remember"
+                                class="remember-me-text">{{ __('voyager::generic.remember_me') }}</label>
+                        </div>
+                    </div> --}}
                 </div>
-            </div>
+                <button type="submit" class="btn btn-primary mt-10">Inloggen</button>
 
-            <div class="form-group form-group-default" id="passwordGroup">
-                <label>{{ __('voyager::generic.password') }}</label>
-                <div class="controls">
-                    <input type="password" name="password" placeholder="{{ __('voyager::generic.password') }}"
-                        class="form-control" required>
-                </div>
-            </div>
+            </form>
+            <a href="{{ route('register') }}">
+                <button class="btn btn-primary mt-10">Register</button>
+            </a>
+        </div>
 
-            <div class="form-group" id="rememberMeGroup">
-                <div class="controls">
-                    <input type="checkbox" name="remember" id="remember" value="1"><label for="remember"
-                        class="remember-me-text">{{ __('voyager::generic.remember_me') }}</label>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-block login-button">
-                <span class="signingin hidden"><span class="voyager-refresh"></span>
-                    {{ __('voyager::login.loggingin') }}...</span>
-                <span class="signin">{{ __('voyager::generic.login') }}</span>
-            </button>
-
-        </form>
-        <a href="{{ route('register') }}"><button class="btn btn-block login-button" style="margin-left: 5px">Register
-            </button></a>
-
-        <div style="clear:both"></div>
-
-        @if (!$errors->isEmpty())
-            <div class="alert alert-red">
-                <ul class="list-unstyled">
-                    @foreach ($errors->all() as $err)
-                        <li>{{ $err }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 
     </div> <!-- .login-container -->
-@endsection
-
-@section('post_js')
-    <script>
-        var btn = document.querySelector('button[type="submit"]');
-        var form = document.forms[0];
-        var email = document.querySelector('[name="email"]');
-        var password = document.querySelector('[name="password"]');
-        btn.addEventListener('click', function(ev) {
-            if (form.checkValidity()) {
-                btn.querySelector('.signingin').className = 'signingin';
-                btn.querySelector('.signin').className = 'signin hidden';
-            } else {
-                ev.preventDefault();
-            }
-        });
-        email.focus();
-        document.getElementById('emailGroup').classList.add("focused");
-
-        // Focus events for email and password fields
-        email.addEventListener('focusin', function(e) {
-            document.getElementById('emailGroup').classList.add("focused");
-        });
-        email.addEventListener('focusout', function(e) {
-            document.getElementById('emailGroup').classList.remove("focused");
-        });
-
-        password.addEventListener('focusin', function(e) {
-            document.getElementById('passwordGroup').classList.add("focused");
-        });
-        password.addEventListener('focusout', function(e) {
-            document.getElementById('passwordGroup').classList.remove("focused");
-        });
-    </script>
 @endsection
