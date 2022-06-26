@@ -32,17 +32,23 @@
             @endif
             <div class="divider"></div>
             @foreach ($categories as $category)
-                <li><a href="{{ route('getProductsFromCategory', ['id' => $category->id]) }}"
-                        class="active:bg-secondary category font-medium focus:ring-amber-300">{{ $category->name }}</a>
-                </li>
+                @if (Route::currentRouteName() == 'order.main')
+                    <li class="category"><a href="{{ route('getProductsFromCategory', ['id' => $category->id]) }}"
+                            class="active:bg-accent font-medium focus:ring-amber-300">{{ $category->name }}</a>
+                    </li>
+                @else
+                    <li><a href="{{ route('getProductsFromCategory', ['id' => $category->id]) }}"
+                            class="active:bg-accent font-medium focus:ring-amber-300">{{ $category->name }}</a>
+                    </li>
+                @endif
             @endforeach
         </ul>
     </div>
 @endif
 <script>
     TweenMax.to(".category", 0.6, {
-        scale: 1.06,
-        repeat: -1,
+        scale: 1.02,
+        repeat: 10,
         yoyo: true,
         ease: Power0.easeNone,
     });

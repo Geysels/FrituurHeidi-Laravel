@@ -11,7 +11,9 @@
                 </label>
                 <ul tabindex="0"
                     class="menu menu-compact dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow">
-                    <li><a href="#aboutus">Over Ons</a></li>
+                    @if (Route::currentRouteName() == 'home')
+                        <li><a class="btn btn-ghost" href="#aboutus">Over Ons</a></li>
+                    @endif
                     <li><a href="{{ route('order.main') }}">Menu</a></li>
                     <li><a href="#contactus">Contact</a></li>
                     @if (Auth::check())
@@ -48,7 +50,9 @@
         </div>
         <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal p-0">
-                <li><a class="btn btn-ghost" href="#aboutus">Over Ons</a></li>
+                @if (Route::currentRouteName() == 'home')
+                    <li><a class="btn btn-ghost" href="#aboutus">Over Ons</a></li>
+                @endif
                 <li><a class="btn btn-ghost" href="{{ route('order.main') }}">Menu</a></li>
                 <li><a class="btn btn-ghost" href="#contactus">Contact</a></li>
                 @if (Auth::check())
@@ -64,6 +68,10 @@
                             <li><a href="{{ route('logout') }}" class="btn btn-ghost">Uitloggen</a></li>
                         </ul>
                     </li>
+                    @if (Auth::user()->role_id === 1)
+                        <li><a href="{{ route('voyager.dashboard') }}" class="btn btn-outline btn-error">Dashboard</a>
+                        </li>
+                    @endif
                 @else
                     <li tabindex="0">
                         <a>
