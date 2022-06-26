@@ -15,9 +15,7 @@
         <label for="my-drawer-2" class="drawer-overlay"></label>
         <ul
             class="menu text-base-content scrollbar-thin scrollbar-thumb-stone-600 scrollbar-track-gray-100 w-80 overflow-y-auto bg-stone-800 p-4">
-            <li><input type="text" placeholder="Type here" class="input input-bordered h-full w-full max-w-xs" />
             </li>
-            <div class="divider"></div>
             @include('order.pages.contents.shopping-cart-content')
             <div class="divider"></div>
             @if (Route::currentRouteName() == 'order.main')
