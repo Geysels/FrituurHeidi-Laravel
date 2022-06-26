@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\RandomItemController;
 
 use Illuminate\Http\Request;
 /*
@@ -61,6 +62,8 @@ Route::post(
 
 Route::get('/register', [RegistrationController::class, 'create'])->name('register');
 Route::post('register', [RegistrationController::class, 'store']);
+
+Route::get('/random', [RandomItemController::class, 'randomitem'])->name('random');
 
 Route::get('/login', function () {
     return view('login');
