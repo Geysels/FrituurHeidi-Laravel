@@ -1,4 +1,4 @@
-<footer class="footer bg-base-200 text-base-content p-10 text-lg" id="contactus">
+<footer class="footer bg-base-200 text-base-content p-10 text-base" id="contactus">
     <div class="w-96">
         <div class="flex flex-col">
             <span class="footer-title">Openingsuren</span>
@@ -53,7 +53,7 @@
         </div>
         <div class="flex lg:hidden">
             <span class="mr-3 justify-center"><i class="fa-solid fa-location-dot fa-lg"></i></span>
-            <a href="https://goo.gl/maps/ngJq71TSt642Rko79">
+            <a href="https://goo.gl/maps/ngJq71TSt642Rko79" target="_blank">
                 <p class="text-base text-slate-50">Kazernelaan 124, 3530 Houthalen-Helchteren</p>
             </a>
         </div>
@@ -69,7 +69,7 @@
     </div>
     <div class="md:place-self-center md:justify-self-end">
         <div class="grid grid-flow-col gap-4">
-            <a href="https://nl-nl.facebook.com/FrituurHeidiHelchteren/">
+            <a href="https://nl-nl.facebook.com/FrituurHeidiHelchteren/" target="_blank">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     class="fill-current">
                     <path
