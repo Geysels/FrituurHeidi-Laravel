@@ -90,6 +90,7 @@
             </ul>
         </div>
         <div class="navbar-end">
+            <a class="btn md:mr-1" href="{{ route('random') }}">Keuzestress?</a>
             <a class="btn md:mr-5" href="{{ route('order.main') }}">Bestel Online</a>
         </div>
     </div>

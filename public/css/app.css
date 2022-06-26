@@ -3893,6 +3893,14 @@ body[dir="rtl"] .checkbox:checked,
     margin-right: 1.25rem;
   }
 
+  .md\:mr-2 {
+    margin-right: 0.5rem;
+  }
+
+  .md\:mr-1 {
+    margin-right: 0.25rem;
+  }
+
   .md\:flex {
     display: flex;
   }
