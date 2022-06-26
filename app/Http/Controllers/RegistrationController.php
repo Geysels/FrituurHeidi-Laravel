@@ -25,6 +25,6 @@ class RegistrationController extends Controller
 
         auth()->login($user);
 
-        return redirect()->to('/#');
+        return redirect()->route('home')->with('toast_success', 'Account succesvol aangemaakt!');
     }
 }

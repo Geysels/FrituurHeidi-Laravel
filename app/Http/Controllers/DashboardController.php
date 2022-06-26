@@ -22,6 +22,6 @@ class DashboardController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('toast_info', 'Je bent succesvol uitgelogd!');
     }
 }
