@@ -3440,6 +3440,9 @@ body[dir="rtl"] .checkbox:checked,
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.mb-8 {
+  margin-bottom: 2rem;
+}
 .block {
   display: block;
 }
@@ -3598,6 +3601,18 @@ body[dir="rtl"] .checkbox:checked,
 .bg-opacity-70 {
   --tw-bg-opacity: 0.7;
 }
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
+}
+.bg-opacity-90 {
+  --tw-bg-opacity: 0.9;
+}
+.bg-opacity-100 {
+  --tw-bg-opacity: 1;
+}
+.bg-opacity-95 {
+  --tw-bg-opacity: 0.95;
+}
 .bg-cover {
   background-size: cover;
 }
@@ -3694,6 +3709,14 @@ body[dir="rtl"] .checkbox:checked,
 .text-7xl {
   font-size: 4.5rem;
   line-height: 1;
+}
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 .font-medium {
   font-weight: 500;
@@ -3970,6 +3993,14 @@ body[dir="rtl"] .checkbox:checked,
 
   .xl\:p-48 {
     padding: 12rem;
+  }
+
+  .xl\:p-40 {
+    padding: 10rem;
+  }
+
+  .xl\:p-20 {
+    padding: 5rem;
   }
 }
 
